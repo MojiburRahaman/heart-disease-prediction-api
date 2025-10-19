@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+pydantic
+joblib
+scikit-learn
+pandas
+numpy
+redis
+hiredis
+kagglehub
+
