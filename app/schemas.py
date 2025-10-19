@@ -38,7 +38,7 @@ class STSlope(IntEnum):
     DOWNSLOPING = 2
 
 
-class Thalassemia(IntEnum):"
+class Thalassemia(IntEnum):
     NORMAL = 0
     FIXED_DEFECT = 1
     REVERSIBLE_DEFECT = 2
