@@ -15,9 +15,6 @@ dataset_path = Path(path)
 csv_file = next(dataset_path.rglob("*.csv"))
 df = pd.read_csv(csv_file)
 
-print(f"Dataset loaded: {csv_file.name}")
-print(f"Dataset shape: {df.shape}")
-
 # Prepare data
 X = df.drop('target', axis=1)
 y = df['target']

@@ -10,22 +10,7 @@ services:
       - "8000:8000"
     environment:
       - ENVIRONMENT=development
-      - REDIS_HOST=api.redis
-      - REDIS_PORT=6379
     volumes:
       - ./app:/app/app
       - ./model:/app/model
     restart: unless-stopped
-
-  api.redis:
-    image: redis:7-alpine
-    container_name: api.redis
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
-    restart: unless-stopped
-
-volumes:
-  redis_data:
-

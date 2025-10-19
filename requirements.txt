@@ -5,7 +5,5 @@ joblib
 scikit-learn
 pandas
 numpy
-redis
-hiredis
 kagglehub
 

@@ -1,13 +1,42 @@
 # Heart Disease Prediction API
 
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/MojiburRahaman/heart-disease-prediction-api)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-success?logo=render)](https://heart-disease-prediction-api-eqbz.onrender.com/)
+[![API Docs](https://img.shields.io/badge/API-Docs-orange?logo=fastapi)](https://heart-disease-prediction-api-eqbz.onrender.com/docs)
+
 A FastAPI application that serves predictions from a machine learning classifier trained on the Heart Disease Dataset.
 
-## 🚀 Quick Start
+🌐 **Live API**: [https://heart-disease-prediction-api-eqbz.onrender.com](https://heart-disease-prediction-api-eqbz.onrender.com/)
+
+## 🎯 Try It Now (Live API)
+
+Test the live API without installing anything:
+
+```bash
+# Check API health
+curl https://heart-disease-prediction-api-eqbz.onrender.com/health
+
+# Get model information
+curl https://heart-disease-prediction-api-eqbz.onrender.com/info
+
+# Make a prediction
+curl -X POST "https://heart-disease-prediction-api-eqbz.onrender.com/predict" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "age": 63, "sex": 1, "cp": 3, "trestbps": 145, "chol": 233,
+    "fbs": 1, "restecg": 0, "thalach": 150, "exang": 0,
+    "oldpeak": 2.3, "slope": 0, "ca": 0, "thal": 1
+  }'
+```
+
+Or visit the **[Interactive API Docs](https://heart-disease-prediction-api-eqbz.onrender.com/docs)** 📚
+
+## 🚀 Quick Start (Local Development)
 
 ```bash
 # 1. Clone the repository
-git clone <your-repo-url>
-cd fastapi
+git clone https://github.com/MojiburRahaman/heart-disease-prediction-api.git
+cd heart-disease-prediction-api
 
 # 2. Start the application (Docker will train the model automatically)
 make up
@@ -19,13 +48,14 @@ make logs
 make test
 ```
 
-That's it! Access the API at `http://localhost:8000` 🎉
+That's it! Access the API at:
+- **Local**: `http://localhost:8000`
+- **Live**: `https://heart-disease-prediction-api-eqbz.onrender.com` 🎉
 
 ## Features
 
 - **Machine Learning Model**: Binary classifier for heart disease prediction
 - **FastAPI Backend**: Modern, fast web framework
-- **Redis Caching**: Fast prediction caching for improved performance
 - **Automatic Training**: Model trains automatically on first Docker startup
 - **Docker Support**: Fully containerized application with Docker Compose
 - **Persistent Storage**: Model and data persist across container restarts
@@ -40,8 +70,7 @@ That's it! Access the API at `http://localhost:8000` 🎉
 │   ├── __init__.py
 │   ├── main.py              # FastAPI application
 │   ├── schemas.py           # Pydantic models
-│   ├── predictor.py         # Model prediction logic
-│   └── redis_client.py      # Redis cache client
+│   └── predictor.py         # Model prediction logic
 ├── model/
 │   ├── __init__.py
 │   ├── model_run.py         # Model training script
@@ -51,7 +80,6 @@ That's it! Access the API at `http://localhost:8000` 🎉
 ├── entrypoint.sh            # Container startup script
 ├── Makefile                 # Convenient commands
 ├── requirements.txt         # Python dependencies
-├── Docker_and_DockerCompose_Guide.md  # Detailed Docker guide
 └── README.md                # This file
 ```
 
@@ -72,7 +100,9 @@ make up
 make logs
 ```
 
-3. **Access the API** at `http://localhost:8000`
+3. **Access the API**:
+   - Local: `http://localhost:8000`
+   - Live: `https://heart-disease-prediction-api-eqbz.onrender.com`
 
 4. **Test the endpoints**:
 ```bash
@@ -84,12 +114,12 @@ That's it! The model will be trained automatically when you first run `make up`.
 ### Available Make Commands
 
 - `make help` - Show all available commands
+- `make build` - Build Docker images
 - `make up` - Build and start the application
 - `make down` - Stop the application
-- `make logs` - View application logs
+- `make logs` - View application logs (follow mode)
 - `make restart` - Restart the application
-- `make test` - Test all API endpoints
-- `make clean` - Remove all containers and images
+- `make clean` - Remove all containers, volumes, and images
 
 ### How It Works
 
@@ -110,7 +140,7 @@ For detailed Docker and Docker Compose concepts, see [Docker_and_DockerCompose_G
 ```bash
 GET /health
 ```
-Returns the health status of the API, model, and Redis connection.
+Returns the health status of the API and model.
 
 ### Model Information
 ```bash
@@ -118,7 +148,7 @@ GET /info
 ```
 Returns model type, features, and metadata.
 
-### Prediction (Cached)
+### Make Prediction
 ```bash
 POST /predict
 Content-Type: application/json
@@ -139,19 +169,7 @@ Content-Type: application/json
   "thal": 1
 }
 ```
-Predictions are cached in Redis for 1 hour. Identical requests return cached results instantly.
-
-### Cache Statistics
-```bash
-GET /cache/stats
-```
-Returns Redis cache usage and performance metrics.
-
-### Clear Cache
-```bash
-DELETE /cache/clear
-```
-Clears all cached predictions.
+Returns prediction with confidence score.
 
 ## Features Description
 
@@ -171,6 +189,8 @@ Clears all cached predictions.
 
 ## Deployment to Cloud
 
+🎯 **Already Deployed**: This API is live at [https://heart-disease-prediction-api-eqbz.onrender.com](https://heart-disease-prediction-api-eqbz.onrender.com/)
+
 ### Deployment to Render
 
 1. **Push your code to GitHub**:
@@ -178,7 +198,7 @@ Clears all cached predictions.
 git init
 git add .
 git commit -m "Initial commit: Heart Disease Prediction API"
-git remote add origin <your-github-repo-url>
+git remote add origin https://github.com/MojiburRahaman/heart-disease-prediction-api.git
 git push -u origin main
 ```
 
@@ -205,6 +225,10 @@ git push -u origin main
    - Your API will be available at: `https://your-service-name.onrender.com`
    - View docs at: `https://your-service-name.onrender.com/docs`
 
+**Example (This Repository)**:
+- API: `https://heart-disease-prediction-api-eqbz.onrender.com`
+- Docs: `https://heart-disease-prediction-api-eqbz.onrender.com/docs`
+
 ### Alternative: Deploy to Other Platforms
 
 **Railway.app**:
@@ -225,8 +249,13 @@ fly deploy
 
 ## API Documentation
 
-Once running, visit:
+### Local Development
 - **Root**: `http://localhost:8000/` - API information
 - **Swagger UI**: `http://localhost:8000/docs` - Interactive API docs
 - **ReDoc**: `http://localhost:8000/redoc` - Alternative API docs
+
+### Live Deployment
+- **Root**: `https://heart-disease-prediction-api-eqbz.onrender.com/` - API information
+- **Swagger UI**: `https://heart-disease-prediction-api-eqbz.onrender.com/docs` - Interactive API docs
+- **ReDoc**: `https://heart-disease-prediction-api-eqbz.onrender.com/redoc` - Alternative API docs
 

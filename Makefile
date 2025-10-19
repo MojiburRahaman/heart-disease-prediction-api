@@ -1,4 +1,4 @@
-.PHONY: help build up down logs clean restart redis-cli cache-clear
+.PHONY: help build up down logs clean restart
 
 help:
 	@echo 'Usage: make [target]'
@@ -25,11 +25,4 @@ restart:
 
 clean:
 	docker-compose down -v --rmi all
-
-redis-cli:
-	docker-compose exec api.redis redis-cli
-
-cache-clear:
-	docker-compose exec api.redis redis-cli FLUSHALL
-	@echo "Cache cleared"
 
