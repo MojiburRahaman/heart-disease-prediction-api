@@ -4,15 +4,12 @@ from typing import Any, List, Literal
 from pydantic import BaseModel, Field
 
 
-# Enums for categorical features
 class Sex(IntEnum):
-    """Biological sex"""
     FEMALE = 0
     MALE = 1
 
 
 class ChestPainType(IntEnum):
-    """Type of chest pain experienced"""
     TYPICAL_ANGINA = 0
     ATYPICAL_ANGINA = 1
     NON_ANGINAL_PAIN = 2
@@ -20,33 +17,28 @@ class ChestPainType(IntEnum):
 
 
 class FastingBloodSugar(IntEnum):
-    """Fasting blood sugar level comparison"""
     LESS_THAN_120 = 0
     GREATER_THAN_120 = 1
 
 
 class RestingECG(IntEnum):
-    """Resting electrocardiographic results"""
     NORMAL = 0
     ST_T_WAVE_ABNORMALITY = 1
     LEFT_VENTRICULAR_HYPERTROPHY = 2
 
 
 class ExerciseInducedAngina(IntEnum):
-    """Exercise induced angina presence"""
     NO = 0
     YES = 1
 
 
 class STSlope(IntEnum):
-    """Slope of the peak exercise ST segment"""
     UPSLOPING = 0
     FLAT = 1
     DOWNSLOPING = 2
 
 
-class Thalassemia(IntEnum):
-    """Thalassemia blood disorder type"""
+class Thalassemia(IntEnum):"
     NORMAL = 0
     FIXED_DEFECT = 1
     REVERSIBLE_DEFECT = 2
@@ -58,7 +50,6 @@ RiskLevel = Literal["low", "moderate", "high"]
 
 
 class ApiResponse(BaseModel):
-    """Standardized API response wrapper for all endpoints"""
     status: bool = Field(..., description="Indicates whether the request was successful")
     message: str = Field(..., description="Human-readable message describing the response")
     data: Any = Field(default=None, description="Response payload data (nullable)")
@@ -77,13 +68,6 @@ class ApiResponse(BaseModel):
 
 
 class HeartDiseaseInput(BaseModel):
-    """
-    Input schema for heart disease prediction.
-    
-    All fields are required and represent clinical measurements and patient characteristics
-    used in cardiovascular disease risk assessment.
-    """
-    
     # Demographics
     age: int = Field(
         ...,
@@ -224,11 +208,6 @@ class HeartDiseaseInput(BaseModel):
 
 
 class PredictionResponse(BaseModel):
-    """
-    Response schema for heart disease prediction results.
-    
-    Contains the prediction outcome, confidence score, and risk classification.
-    """
     heart_disease: bool = Field(
         ...,
         description="Indicates presence of heart disease (true) or absence (false)"
