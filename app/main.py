@@ -107,11 +107,6 @@ async def health_check():
 
 @app.get("/info", response_model=ApiResponse, tags=["Model"])
 async def get_model_info():
-    """
-    Get information about the model
-    
-    Returns model type, feature list, and other metadata
-    """
     if predictor is None:
         raise HTTPException(
             status_code=503,
